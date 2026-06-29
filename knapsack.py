@@ -11,25 +11,25 @@ n = len(items)
 
 for i in range(2**n):
     #２進数に変換
-    pattern = (i, f"0{n}b")
+    pattern = format(i, f"0{n}b")
     
     now_capacity = 0
     now_value = 0
-    now_goods = []
+    now_items = []
     
     #n回目のパターンの値段，容量，商品リストの作成
     for j in range(n):
         if pattern[j] == "1":
             now_capacity += goods[j]
             now_value += prices[j]
-            now_goods.append(items[j])
+            now_items.append(items[j])
             
     #比較　　容量を超えてないかつ，一回前より値段が高かったら更新
     if now_capacity <= max_capacity and now_value > best_value:
         best_value = now_value
         best_total_capacity = now_capacity
-        best_goods = now_goods
+        best_items = now_items
 
-print(f"選んだ品物: {best_goods}")
+print(f"選んだ品物: {best_items}")
 print(f"最大の値段: {best_value}")
 print(f"容量: {best_total_capacity} / {max_capacity}")
